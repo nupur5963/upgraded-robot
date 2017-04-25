@@ -1,0 +1,78 @@
+package String;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class MyMapSort {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Map<String,Integer> hm = new HashMap<String,Integer>();
+		hm.put("abb",62);
+		hm.put("beon",97);
+		hm.put("cat",23);
+		System.out.println("HashMap Before Sorting:"+hm);
+		System.out.println("\n");
+		System.out.println("Sorting by values first---->");
+		
+		Set<Entry<String, Integer>> enteries = hm.entrySet();
+		
+		
+		ArrayList<Entry<String,Integer>> sortedlist = new ArrayList<Entry<String,Integer>>(enteries);
+		Collections.sort(sortedlist,new Comparator<Entry<String,Integer>>(){
+
+			@Override
+			public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {
+				// TODO Auto-generated method stub
+				return o2.getValue().compareTo(o1.getValue());
+			}
+
+			
+			
+		});
+		
+		
+       Map<String,Integer> sortedbyvlaue = new LinkedHashMap<String,Integer>();
+		for(Entry<String,Integer> entry: sortedlist){
+			sortedbyvlaue.put(entry.getKey(), entry.getValue());
+		}
+		Set<Entry<String,Integer>> sorted = sortedbyvlaue.entrySet();
+		
+		for(Entry<String,Integer> en : sorted){
+			System.out.println(en.getKey()+"=======>"+en.getValue());
+		}
+		
+	System.out.println("sorting by keys");
+	Set<String> keysets = hm.keySet();
+	
+	ArrayList <String> al1 = new ArrayList<String>(keysets);
+Collections.sort(al1);
+	
+	
+	Map<String,Integer> SortByKey = new LinkedHashMap<String,Integer>();
+	
+	for(String s1:al1){
+		SortByKey.put(s1,hm.get(s1));
+	}
+	
+
+	
+	Set<Entry<String,Integer>> sorted1= SortByKey.entrySet();
+	
+	for(Entry<String,Integer> en : sorted1){
+		System.out.println(en.getKey()+"=======>"+en.getValue());
+	}
+
+	}
+	
+	
+
+}
